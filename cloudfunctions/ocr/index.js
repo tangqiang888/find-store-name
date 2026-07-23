@@ -2,8 +2,8 @@ const cloud = require('wx-server-sdk');
 const axios = require('axios');
 cloud.init();
 
-const API_KEY = '你的百度OCR API Key';
-const SECRET_KEY = '你的百度OCR Secret Key';
+const API_KEY = '7aQzTbewid4at1yeSchOYbgR';
+const SECRET_KEY = 'EyOz1sgwUbsyXfJ56WQ7dvTap0uhwaIg';
 
 exports.main = async (event) => {
   const { fileID } = event;
