@@ -1,0 +1,22 @@
+name: Deploy MiniProgram
+on:
+  push:
+    branches: [ main ]
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm install miniprogram-ci -g
+      - run: |
+          miniprogram-ci upload \
+            --pp ./miniprogram \
+            --pkp ${{ secrets.PRIVATE_KEY }} \
+            --appid ${{ secrets.APPID }} \
+            --uv ${{ secrets.APPID }} \
+            --enable-es6 true \
+            --enable-autoprefixwxss true \
+            --upload-version "1.0.${{ github.run_number }}"
