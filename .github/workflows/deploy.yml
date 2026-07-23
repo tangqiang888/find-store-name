@@ -12,10 +12,13 @@ jobs:
         with:
           node-version: 16
       - run: npm install miniprogram-ci -g
-      - run: |
+      - name: Write private key
+        run: echo "${{ secrets.PRIVATE_KEY }}" > private.key
+      - name: Upload to WeChat
+        run: |
           miniprogram-ci upload \
             --pp ./miniprogram \
-            --pkp ${{ secrets.PRIVATE_KEY }} \
+            --pkp ./private.key \
             --appid ${{ secrets.APPID }} \
             --uv ${{ secrets.APPID }} \
             --enable-es6 true \
