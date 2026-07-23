@@ -1,0 +1,62 @@
+.entry {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+.preview-img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.1);
+}
+.table-container {
+  overflow: hidden;
+  border: 1rpx solid #ddd;
+  border-radius: var(--radius);
+}
+.table-scroll-x {
+  width: 100%;
+  white-space: nowrap;
+}
+.table-header, .table-row {
+  display: flex;
+}
+.cell {
+  min-width: 200rpx;
+  padding: 12rpx 10rpx;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+.cell.head {
+  font-weight: bold;
+  background: #f0f4ff;
+  color: #333;
+}
+.cell input {
+  width: 180rpx;
+  font-size: 28rpx;
+  border: none;
+  outline: none;
+}
+.supplier-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  font-size: var(--font-base);
+  background: white;
+  padding: 20rpx;
+  border-radius: var(--radius);
+}
+.supplier-bar input {
+  border-bottom: 1rpx solid #aaa;
+  width: 200rpx;
+  font-size: var(--font-base);
+}
+.picker-view {
+  border-bottom: 1rpx solid #aaa;
+  width: 220rpx;
+}

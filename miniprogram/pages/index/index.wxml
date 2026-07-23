@@ -1,0 +1,17 @@
+<view class="home">
+  <view class="card" bindtap="goEntry">
+    <text class="icon">📋</text>
+    <text class="title">单据录入</text>
+    <text class="desc">拍照识别货单 · 填写明细</text>
+  </view>
+  <view class="card" bindtap="goQuery">
+    <text class="icon">🔍</text>
+    <text class="title">货品查询</text>
+    <text class="desc">模糊搜索 · 查看原图</text>
+  </view>
+  <view class="card" bindtap="goDelete">
+    <text class="icon">🗑️</text>
+    <text class="title">货品删除</text>
+    <text class="desc">批量勾选 · 确认删除</text>
+  </view>
+</view>

@@ -1,0 +1,41 @@
+<view class="entry">
+  <button class="button-primary" bindtap="chooseImage">📷 拍照/选图识别单据</button>
+  <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="widthFix" class="preview-img"/>
+
+  <view class="table-container" wx:if="{{list.length}}">
+    <scroll-view scroll-x class="table-scroll-x">
+      <view class="table-header">
+        <view class="cell head">货品名称</view>
+        <view class="cell head">规格</view>
+        <view class="cell head">数量</view>
+        <view class="cell head">扩展1</view>
+        <view class="cell head">扩展2</view>
+        <view class="cell head">扩展3</view>
+        <view class="cell head">扩展4</view>
+        <view class="cell head">操作</view>
+      </view>
+      <view wx:for="{{list}}" wx:key="index" class="table-row">
+        <view class="cell"><input value="{{item.goods_name}}" data-index="{{index}}" data-field="goods_name" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.spec}}" data-index="{{index}}" data-field="spec" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.quantity}}" data-index="{{index}}" data-field="quantity" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.ext1}}" data-index="{{index}}" data-field="ext1" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.ext2}}" data-index="{{index}}" data-field="ext2" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.ext3}}" data-index="{{index}}" data-field="ext3" bindinput="onCellInput"/></view>
+        <view class="cell"><input value="{{item.ext4}}" data-index="{{index}}" data-field="ext4" bindinput="onCellInput"/></view>
+        <view class="cell"><button size="mini" bindtap="deleteRow" data-index="{{index}}">删</button></view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="supplier-bar">
+    <text>供应商：</text>
+    <input placeholder="供应商" value="{{supplier}}" bindinput="onSupplierInput"/>
+    <text>开单时间：</text>
+    <picker mode="date" value="{{order_time}}" bindchange="onDateChange">
+      <view class="picker-view">{{order_time || '选择日期'}}</view>
+    </picker>
+  </view>
+
+  <button class="button-primary" bindtap="addRow">+ 添加一行</button>
+  <button class="button-primary" bindtap="saveAll">💾 保存全部</button>
+</view>

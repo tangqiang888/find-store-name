@@ -1,0 +1,8 @@
+{
+  "name": "ocr",
+  "version": "1.0.0",
+  "dependencies": {
+    "wx-server-sdk": "latest",
+    "axios": "^1.4.0"
+  }
+}

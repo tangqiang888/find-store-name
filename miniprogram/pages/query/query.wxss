@@ -1,0 +1,39 @@
+.query {
+  padding: var(--spacing-md);
+}
+
+.search-input {
+  background: white;
+  border-radius: var(--radius);
+  padding: 20rpx;
+  font-size: var(--font-lg);
+  margin-bottom: 20rpx;
+  border: 1rpx solid #ddd;
+}
+
+.table-header,
+.table-row {
+  display: flex;
+}
+
+.cell {
+  min-width: 200rpx;
+  padding: 12rpx 10rpx;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.cell.head {
+  font-weight: bold;
+  background: #f0f4ff;
+  color: #333;
+}
+
+.empty {
+  text-align: center;
+  color: #999;
+  margin-top: 60rpx;
+}

@@ -1,0 +1,25 @@
+page {
+  --primary #4A90E2;
+  --bg #F5F7FA;
+  --font-xl 40rpx;
+  --font-lg 36rpx;
+  --font-md 32rpx;
+  --font-base 28rpx;
+  --spacing-lg 40rpx;
+  --spacing-md 30rpx;
+  --spacing-sm 20rpx;
+  --radius 16rpx;
+  font-size var(--font-base);
+  background var(--bg);
+  font-family -apple-system, BlinkMacSystemFont, sans-serif;
+}
+button {
+  font-size var(--font-lg) !important;
+  border-radius var(--radius);
+  min-height 100rpx;
+  margin 10rpx 0;
+}
+.button-primary {
+  background var(--primary);
+  color white;
+}

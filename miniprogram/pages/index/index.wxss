@@ -1,0 +1,19 @@
+.home {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+  margin-top: 20rpx;
+}
+.card {
+  background: white;
+  border-radius: var(--radius);
+  padding: 40rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.06);
+}
+.icon { font-size: 72rpx; margin-bottom: 16rpx; }
+.title { font-size: var(--font-xl); font-weight: bold; color: #333; margin-bottom: 8rpx; }
+.desc { font-size: var(--font-base); color: #777; }

@@ -1,0 +1,10 @@
+.delete { padding: var(--spacing-md); }
+.table-header, .table-row { display: flex; }
+.cell {
+  min-width: 200rpx;
+  padding: 12rpx 10rpx;
+  border-right: 1rpx solid #eee;
+  border-bottom: 1rpx solid #eee;
+  font-size: 28rpx;
+}
+.cell.head { font-weight: bold; background: #f0f4ff; color: #333; }
