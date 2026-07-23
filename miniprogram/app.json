@@ -1,17 +1,17 @@
 {
-  pages [
-    pagesindexindex,
-    pagesentryentry,
-    pagesqueryquery,
-    pagesdeletedelete
+  "pages": [
+    "pages/index/index",
+    "pages/entry/entry",
+    "pages/query/query",
+    "pages/delete/delete"
   ],
-  window {
-    navigationBarBackgroundColor #4A90E2,
-    navigationBarTitleText 找店名,
-    navigationBarTextStyle white,
-    backgroundColor #F5F7FA
+  "window": {
+    "navigationBarBackgroundColor": "#4A90E2",
+    "navigationBarTitleText": "找店名",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F7FA"
   },
-  style v2,
-  sitemapLocation sitemap.json,
-  cloud true
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "cloud": true
 }
