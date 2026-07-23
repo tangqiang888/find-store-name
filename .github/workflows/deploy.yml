@@ -13,7 +13,8 @@ jobs:
           node-version: 16
       - run: npm install miniprogram-ci -g
       - name: Write private key
-        run: echo "${{ secrets.PRIVATE_KEY }}" > private.key
+        run: |
+          printf "%s" "${{ secrets.PRIVATE_KEY }}" > private.key
       - name: Upload to WeChat
         run: |
           miniprogram-ci upload \
