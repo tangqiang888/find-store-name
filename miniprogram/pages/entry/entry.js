@@ -12,7 +12,7 @@ Page({
   async chooseImage() {
     const res = await wx.chooseImage({ count: 1 });
     const tempPath = res.tempFilePaths[0];
-    wx.showLoading({ title: '上传中...' });
+    wx.showLoading({ title: '上传图片中...' });
     const cloudPath = `ocr/${Date.now()}.jpg`;
     const uploadRes = await wx.cloud.uploadFile({ cloudPath, filePath: tempPath });
     wx.hideLoading();
@@ -24,15 +24,24 @@ Page({
         name: 'ocr',
         data: { fileID: uploadRes.fileID }
       });
-      if (result && result.words) {
+      wx.hideLoading();
+      if (result && result.words && result.words.length > 0) {
         this.parseOCR(result.words);
       } else {
-        wx.showToast({ title: '未识别到文字', icon: 'none' });
+        wx.showModal({
+          title: '识别结果为空',
+          content: '请确认图片中包含打印文字',
+          showCancel: false
+        });
       }
     } catch (e) {
-      wx.showToast({ title: '识别失败', icon: 'none' });
+      wx.hideLoading();
+      wx.showModal({
+        title: 'OCR 调用失败',
+        content: e.message || '请检查网络或云函数',
+        showCancel: false
+      });
     }
-    wx.hideLoading();
   },
 
   parseOCR(wordsArr) {
@@ -94,7 +103,7 @@ Page({
       }
     } catch (e) {
       wx.hideLoading();
-      wx.showToast({ title: '调用云函数失败，请检查网络', icon: 'none' });
+      wx.showToast({ title: '调用云函数失败，请重试', icon: 'none' });
     }
   },
 
