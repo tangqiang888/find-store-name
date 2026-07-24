@@ -19,7 +19,10 @@
   overflow: hidden;
 }
 .table-scroll { width: 100%; white-space: nowrap; }
-.table-header, .table-row { display: flex; align-items: stretch; }
+.table-header, .table-row {
+  display: flex;
+  align-items: stretch;
+}
 .cell {
   padding: 16rpx 10rpx;
   font-size: var(--font-sm);
@@ -50,4 +53,4 @@
   line-height: 1.6;
 }
 .no-img { color: #ccc; font-size: 24rpx; }
-.empty-tip { text-align: center; color: var(--text-secondary); margin-top: 120rpx; font-size: var(--font-md); }
+.table-empty { text-align: center; padding: 40rpx; color: var(--text-secondary); font-size: var(--font-md); }
