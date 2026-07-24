@@ -10,9 +10,9 @@
       </view>
       <view wx:for="{{list}}" wx:key="_id" class="table-row">
         <view class="cell seq">{{index + 1}}</view>
-        <view class="cell name">{{item.goods_name}}</view>
-        <view class="cell supplier">{{item.supplier}}</view>
-        <view class="cell date">{{item.order_time}}</view>
+        <view class="cell name">{{item.goods_name || ''}}</view>
+        <view class="cell supplier">{{item.supplier || ''}}</view>
+        <view class="cell date">{{item.order_time || ''}}</view>
         <view class="cell sel">
           <checkbox value="{{item._id}}" checked="{{item.checked}}" data-index="{{index}}" bindtap="toggle"/>
         </view>
