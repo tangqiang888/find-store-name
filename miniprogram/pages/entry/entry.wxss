@@ -39,7 +39,10 @@
   margin-top: var(--spacing-sm);
 }
 .table-scroll { width: 100%; white-space: nowrap; }
-.table-header, .table-row { display: flex; align-items: stretch; }
+.table-header, .table-row {
+  display: flex;
+  align-items: stretch;
+}
 .cell {
   padding: 16rpx 10rpx;
   font-size: var(--font-sm);
@@ -75,4 +78,14 @@
   border: none;
   line-height: 1.6;
 }
-.action-bar { margin-top: var(--spacing-lg); display: flex; gap: 20rpx; }
+.table-empty {
+  text-align: center;
+  padding: 40rpx;
+  color: var(--text-secondary);
+  font-size: var(--font-md);
+}
+.action-bar {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  gap: 20rpx;
+}
