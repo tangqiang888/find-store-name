@@ -28,4 +28,4 @@
 .sel { width: 120rpx; justify-content: center; border-right: none; }
 
 .delete-action { margin-top: var(--spacing-md); }
-.empty-tip { text-align: center; color: var(--text-secondary); margin-top: 120rpx; font-size: var(--font-md); }
+.table-empty { text-align: center; padding: 40rpx; color: var(--text-secondary); font-size: var(--font-md); }
