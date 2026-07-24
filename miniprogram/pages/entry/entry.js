@@ -5,8 +5,10 @@ Page({
     supplier: '',
     order_time: '',
     imagePath: '',
-    cloudImgId: ''
+    cloudImgId: '',
+    _saved: false
   },
+
   async chooseImage() {
     const res = await wx.chooseImage({ count: 1 });
     const tempPath = res.tempFilePaths[0];
@@ -32,41 +34,40 @@ Page({
     }
     wx.hideLoading();
   },
+
   parseOCR(wordsArr) {
+    // 只取每行第一个有意义的字符串作为货品名称（忽略规格数量）
     const rows = wordsArr.map(line => {
       const cols = line.split(/[\s,，]+/).filter(c => c);
-      return {
-        goods_name: cols[0] || '',
-        spec: cols[1] || '',
-        quantity: cols[2] || '',
-        ext1: cols[3] || '',
-        ext2: cols[4] || '',
-        ext3: cols[5] || '',
-        ext4: cols[6] || ''
-      };
+      return { goods_name: cols.join(' ') };
     });
     this.setData({ list: rows });
-    wx.showToast({ title: `识别到${rows.length}行` });
+    wx.showToast({ title: `识别到 ${rows.length} 行` });
   },
-  onCellInput(e) {
-    const { index, field } = e.currentTarget.dataset;
-    this.data.list[index][field] = e.detail.value;
+
+  onNameInput(e) {
+    const index = e.currentTarget.dataset.index;
+    this.data.list[index].goods_name = e.detail.value;
     this.setData({ list: this.data.list });
   },
+
   addRow() {
-    this.data.list.push({});
+    this.data.list.push({ goods_name: '' });
     this.setData({ list: this.data.list });
   },
+
   deleteRow(e) {
     this.data.list.splice(e.currentTarget.dataset.index, 1);
     this.setData({ list: this.data.list });
   },
+
   onSupplierInput(e) { this.setData({ supplier: e.detail.value }); },
   onDateChange(e) { this.setData({ order_time: e.detail.value }); },
+
   async saveAll() {
     const { list, supplier, order_time, cloudImgId } = this.data;
     if (!supplier || !order_time) {
-      wx.showToast({ title: '请填供应商和日期', icon: 'none' }); return;
+      wx.showToast({ title: '请填写供应商和日期', icon: 'none' }); return;
     }
     wx.showLoading({ title: '保存中...' });
     for (let item of list) {
@@ -75,12 +76,6 @@ Page({
           supplier,
           order_time,
           goods_name: item.goods_name || '',
-          spec: item.spec || '',
-          quantity: item.quantity || '',
-          ext1: item.ext1 || '',
-          ext2: item.ext2 || '',
-          ext3: item.ext3 || '',
-          ext4: item.ext4 || '',
           img_path: cloudImgId,
           create_time: db.serverDate()
         }
@@ -90,12 +85,10 @@ Page({
     wx.showToast({ title: '保存成功' });
     this._saved = true;
   },
+
   onUnload() {
     if (this.data.list.length > 0 && !this._saved) {
-      wx.showModal({
-        title: '提示',
-        content: '有未保存的数据，确定离开吗？',
-      });
+      wx.showModal({ title: '提示', content: '有未保存的数据，确定离开吗？' });
     }
   }
 });
