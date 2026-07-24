@@ -66,23 +66,33 @@ Page({
   async saveAll() {
     const { list, supplier, order_time, cloudImgId } = this.data;
     if (!supplier || !order_time) {
-      wx.showToast({ title: '请填写供应商和日期', icon: 'none' }); return;
+      wx.showToast({ title: '请填写供应商和日期', icon: 'none' });
+      return;
+    }
+    if (list.length === 0) {
+      wx.showToast({ title: '没有可保存的数据', icon: 'none' });
+      return;
     }
     wx.showLoading({ title: '保存中...' });
-    for (let item of list) {
-      await db.collection('goods_record').add({
-        data: {
-          supplier,
-          order_time,
-          goods_name: item.goods_name || '',
-          img_path: cloudImgId,
-          create_time: db.serverDate()
-        }
+    try {
+      const records = list.map(item => ({
+        goods_name: item.goods_name || '',
+        supplier,
+        order_time,
+        img_path: cloudImgId,
+        create_time: new Date()
+      }));
+      await wx.cloud.callFunction({
+        name: 'addRecords',
+        data: { records }
       });
+      wx.hideLoading();
+      wx.showToast({ title: `成功保存 ${list.length} 条` });
+      this.setData({ list: [], _saved: true });
+    } catch (e) {
+      wx.hideLoading();
+      wx.showToast({ title: '保存失败，请重试', icon: 'none' });
     }
-    wx.hideLoading();
-    wx.showToast({ title: '保存成功' });
-    this._saved = true;
   },
 
   onUnload() {
