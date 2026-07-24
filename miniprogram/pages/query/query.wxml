@@ -14,9 +14,9 @@
       </view>
       <view wx:for="{{list}}" wx:key="_id" class="table-row">
         <view class="cell seq">{{index + 1}}</view>
-        <view class="cell name">{{item.goods_name}}</view>
-        <view class="cell supplier">{{item.supplier}}</view>
-        <view class="cell date">{{item.order_time}}</view>
+        <view class="cell name">{{item.goods_name || ''}}</view>
+        <view class="cell supplier">{{item.supplier || ''}}</view>
+        <view class="cell date">{{item.order_time || ''}}</view>
         <view class="cell op">
           <button wx:if="{{item.img_path}}" size="mini" class="img-btn" bindtap="viewImage" data-id="{{item._id}}">查看</button>
           <text wx:else class="no-img">无</text>
