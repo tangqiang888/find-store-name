@@ -27,6 +27,13 @@ Page({
       wx.hideLoading();
       if (result && result.words && result.words.length > 0) {
         this.parseOCR(result.words);
+      } else if (result.error) {
+        // 云函数返回了错误信息
+        wx.showModal({
+          title: '识别失败',
+          content: result.error + (result.msg ? '\n' + result.msg : ''),
+          showCancel: false
+        });
       } else {
         wx.showModal({
           title: '识别结果为空',
