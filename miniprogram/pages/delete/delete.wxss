@@ -1,12 +1,19 @@
 .page-container { padding: var(--spacing-md); }
+
 .table-card {
   background: var(--card-bg);
   border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: var(--spacing-md);
 }
-.table-scroll { width: 100%; white-space: nowrap; }
-.table-header, .table-row { display: flex; align-items: stretch; }
+
+.table-scroll { width: 100%; }
+
+.table-header, .table-row {
+  display: flex;
+  align-items: stretch;
+}
+
 .cell {
   padding: 16rpx 10rpx;
   font-size: var(--font-sm);
@@ -14,13 +21,21 @@
   border-bottom: 1rpx solid var(--border);
   display: flex;
   align-items: center;
+  white-space: normal;
+  word-break: break-all;
 }
+
 .cell.head {
   font-weight: 600;
   background: var(--primary-light);
   color: var(--primary);
   font-size: var(--font-md);
+  white-space: nowrap;   /* 表头不换行 */
+  align-items: center;
+  justify-content: center;
 }
+
+/* 列宽固定 */
 .seq { width: 80rpx; justify-content: center; }
 .name { width: 320rpx; }
 .supplier { width: 240rpx; }
@@ -28,4 +43,10 @@
 .sel { width: 120rpx; justify-content: center; border-right: none; }
 
 .delete-action { margin-top: var(--spacing-md); }
-.table-empty { text-align: center; padding: 40rpx; color: var(--text-secondary); font-size: var(--font-md); }
+
+.table-empty {
+  text-align: center;
+  padding: 40rpx;
+  color: var(--text-secondary);
+  font-size: var(--font-md);
+}
