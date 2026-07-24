@@ -1,6 +1,6 @@
 App({
   onLaunch() {
-    wx.cloud.init({ env: '你的云开发环境ID' }); // 替换为真实环境 ID
+    wx.cloud.init({ env: 'find-store-name' }); // 替换为真实环境 ID
     this.addTestDataIfEmpty();
   },
 
