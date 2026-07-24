@@ -2,6 +2,7 @@
   <button class="button-primary" bindtap="chooseImage">📷 拍照/选图识别单据</button>
   <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="widthFix" class="preview-img"/>
 
+  <!-- 供应商和日期统一填写区 -->
   <view class="info-card">
     <view class="info-item">
       <text class="label">供应商</text>
@@ -15,7 +16,8 @@
     </view>
   </view>
 
-  <view class="table-card" wx:if="{{list.length}}">
+  <!-- 表格区：始终显示表头，有数据时显示行，无数据时显示空提示 -->
+  <view class="table-card">
     <scroll-view scroll-x class="table-scroll">
       <view class="table-header">
         <view class="cell head seq">序号</view>
@@ -24,19 +26,22 @@
         <view class="cell head date">单据日期</view>
         <view class="cell head op">操作</view>
       </view>
-      <view wx:for="{{list}}" wx:key="index" class="table-row">
-        <view class="cell seq">{{index + 1}}</view>
-        <view class="cell name"><input value="{{item.goods_name}}" data-index="{{index}}" bindinput="onNameInput"/></view>
-        <view class="cell supplier">{{supplier}}</view>
-        <view class="cell date">{{order_time}}</view>
-        <view class="cell op">
-          <button size="mini" class="del-btn" bindtap="deleteRow" data-index="{{index}}">删除</button>
+      <block wx:if="{{list.length}}">
+        <view wx:for="{{list}}" wx:key="index" class="table-row">
+          <view class="cell seq">{{index + 1}}</view>
+          <view class="cell name"><input value="{{item.goods_name}}" data-index="{{index}}" bindinput="onNameInput"/></view>
+          <view class="cell supplier">{{supplier}}</view>
+          <view class="cell date">{{order_time}}</view>
+          <view class="cell op">
+            <button size="mini" class="del-btn" bindtap="deleteRow" data-index="{{index}}">删除</button>
+          </view>
         </view>
-      </view>
+      </block>
+      <view wx:else class="table-empty">暂无货品，请拍照识别或手动添加</view>
     </scroll-view>
   </view>
 
-  <view class="action-bar" wx:if="{{list.length}}">
+  <view class="action-bar">
     <button class="button-primary" bindtap="addRow">+ 添加一行</button>
     <button class="button-primary" bindtap="saveAll">💾 保存全部</button>
   </view>
