@@ -1,5 +1,5 @@
 <view class="page-container">
-  <view class="table-card" wx:if="{{list.length}}">
+  <view class="table-card">
     <scroll-view scroll-x class="table-scroll">
       <view class="table-header">
         <view class="cell head seq">序号</view>
@@ -8,18 +8,20 @@
         <view class="cell head date">单据日期</view>
         <view class="cell head sel">选择</view>
       </view>
-      <view wx:for="{{list}}" wx:key="_id" class="table-row">
-        <view class="cell seq">{{index + 1}}</view>
-        <view class="cell name">{{item.goods_name || ''}}</view>
-        <view class="cell supplier">{{item.supplier || ''}}</view>
-        <view class="cell date">{{item.order_time || ''}}</view>
-        <view class="cell sel">
-          <checkbox value="{{item._id}}" checked="{{item.checked}}" data-index="{{index}}" bindtap="toggle"/>
+      <block wx:if="{{list.length}}">
+        <view wx:for="{{list}}" wx:key="_id" class="table-row">
+          <view class="cell seq">{{index + 1}}</view>
+          <view class="cell name">{{item.goods_name || ''}}</view>
+          <view class="cell supplier">{{item.supplier || ''}}</view>
+          <view class="cell date">{{item.order_time || ''}}</view>
+          <view class="cell sel">
+            <checkbox value="{{item._id}}" checked="{{item.checked}}" data-index="{{index}}" bindtap="toggle"/>
+          </view>
         </view>
-      </view>
+      </block>
+      <view wx:else class="table-empty">暂无数据</view>
     </scroll-view>
   </view>
-  <view wx:else class="empty-tip">暂无数据</view>
 
   <view class="delete-action">
     <button class="button-primary" bindtap="deleteSelected">🗑️ 删除所选 ({{checkedCount}})</button>
