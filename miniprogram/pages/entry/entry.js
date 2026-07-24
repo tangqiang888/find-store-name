@@ -36,7 +36,6 @@ Page({
   },
 
   parseOCR(wordsArr) {
-    // 只取每行第一个有意义的字符串作为货品名称（忽略规格数量）
     const rows = wordsArr.map(line => {
       const cols = line.split(/[\s,，]+/).filter(c => c);
       return { goods_name: cols.join(' ') };
