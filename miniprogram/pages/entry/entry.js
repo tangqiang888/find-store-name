@@ -79,19 +79,22 @@ Page({
         goods_name: item.goods_name || '',
         supplier,
         order_time,
-        img_path: cloudImgId,
-        create_time: new Date()
+        img_path: cloudImgId
       }));
-      await wx.cloud.callFunction({
+      const res = await wx.cloud.callFunction({
         name: 'addRecords',
         data: { records }
       });
       wx.hideLoading();
-      wx.showToast({ title: `成功保存 ${list.length} 条` });
-      this.setData({ list: [], _saved: true });
+      if (res.result && res.result.ok) {
+        wx.showToast({ title: `成功保存 ${res.result.count} 条` });
+        this.setData({ list: [], _saved: true });
+      } else {
+        wx.showToast({ title: '保存失败：' + (res.result.msg || '未知'), icon: 'none' });
+      }
     } catch (e) {
       wx.hideLoading();
-      wx.showToast({ title: '保存失败，请重试', icon: 'none' });
+      wx.showToast({ title: '调用云函数失败，请检查网络', icon: 'none' });
     }
   },
 
