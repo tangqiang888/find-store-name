@@ -1,6 +1,6 @@
 App({
   onLaunch() {
-    wx.cloud.init({ env: '你的云开发环境ID' }); // 替换为你的环境 ID
+    wx.cloud.init({ env: '你的云开发环境ID' }); // 替换为真实环境 ID
     this.addTestDataIfEmpty();
   },
 
@@ -11,8 +11,8 @@ App({
       if (res.total === 0) {
         await db.collection('goods_record').add({
           data: {
-            goods_name: '596ml娃哈哈矿泉水',
-            supplier: '测试供应商A',
+            goods_name: '娃哈哈矿泉水596ml',
+            supplier: '测试1',
             order_time: '2026-07-24',
             img_path: '',
             create_time: db.serverDate()
