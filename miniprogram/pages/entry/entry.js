@@ -18,34 +18,24 @@ Page({
     wx.hideLoading();
     this.setData({ imagePath: tempPath, cloudImgId: uploadRes.fileID });
 
-    wx.showLoading({ title: '识别中...' });
+    wx.showLoading({ title: '测试token获取...' });
     try {
       const { result } = await wx.cloud.callFunction({
         name: 'ocr',
         data: { fileID: uploadRes.fileID }
       });
       wx.hideLoading();
-      if (result && result.words && result.words.length > 0) {
-        this.parseOCR(result.words);
-      } else if (result.error) {
-        // 云函数返回了错误信息
-        wx.showModal({
-          title: '识别失败',
-          content: result.error + (result.msg ? '\n' + result.msg : ''),
-          showCancel: false
-        });
-      } else {
-        wx.showModal({
-          title: '识别结果为空',
-          content: '请确认图片中包含打印文字',
-          showCancel: false
-        });
-      }
+      // 直接弹窗显示云函数返回的完整结果
+      wx.showModal({
+        title: 'Token测试结果',
+        content: JSON.stringify(result, null, 2),
+        showCancel: false
+      });
     } catch (e) {
       wx.hideLoading();
       wx.showModal({
-        title: 'OCR 调用失败',
-        content: e.message || '请检查网络或云函数',
+        title: '云函数调用失败',
+        content: e.message || '未知错误',
         showCancel: false
       });
     }
