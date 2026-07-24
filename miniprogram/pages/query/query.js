@@ -9,7 +9,6 @@ Page({
     const res = await db.collection('goods_record').where(_.or([
       { supplier: db.RegExp({ regexp: keyword, options: 'i' }) },
       { goods_name: db.RegExp({ regexp: keyword, options: 'i' }) },
-      { spec: db.RegExp({ regexp: keyword, options: 'i' }) },
       { order_time: db.RegExp({ regexp: keyword, options: 'i' }) }
     ])).get();
     this.setData({ list: res.data });
