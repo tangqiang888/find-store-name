@@ -1,4 +1,5 @@
 .page-container { padding: var(--spacing-md); }
+
 .preview-img {
   width: 100%;
   border-radius: var(--radius-md);
@@ -15,13 +16,16 @@
   flex-direction: column;
   gap: 20rpx;
 }
+
 .info-item { display: flex; align-items: center; }
+
 .label {
   width: 160rpx;
   font-size: var(--font-md);
   color: var(--text-secondary);
   font-weight: 500;
 }
+
 .info-input {
   flex: 1;
   height: 72rpx;
@@ -30,6 +34,7 @@
   padding: 0 16rpx;
   font-size: var(--font-md);
 }
+
 .picker-value { line-height: 72rpx; color: var(--text); }
 
 .table-card {
@@ -38,11 +43,14 @@
   overflow: hidden;
   margin-top: var(--spacing-sm);
 }
-.table-scroll { width: 100%; white-space: nowrap; }
+
+.table-scroll { width: 100%; }
+
 .table-header, .table-row {
   display: flex;
   align-items: stretch;
 }
+
 .cell {
   padding: 16rpx 10rpx;
   font-size: var(--font-sm);
@@ -50,25 +58,36 @@
   border-bottom: 1rpx solid var(--border);
   display: flex;
   align-items: center;
+  white-space: normal;
+  word-break: break-all;
 }
+
 .cell.head {
   font-weight: 600;
   background: var(--primary-light);
   color: var(--primary);
   font-size: var(--font-md);
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
 }
+
 .seq { width: 80rpx; justify-content: center; }
 .name { width: 320rpx; }
 .supplier { width: 240rpx; }
 .date { width: 220rpx; }
 .op { width: 120rpx; justify-content: center; border-right: none; }
+
 .cell input {
   width: 100%;
   font-size: var(--font-sm);
   border: none;
   outline: none;
   background: transparent;
+  white-space: normal;
+  word-break: break-all;
 }
+
 .del-btn {
   font-size: 24rpx !important;
   padding: 0 16rpx;
@@ -78,12 +97,14 @@
   border: none;
   line-height: 1.6;
 }
+
 .table-empty {
   text-align: center;
   padding: 40rpx;
   color: var(--text-secondary);
   font-size: var(--font-md);
 }
+
 .action-bar {
   margin-top: var(--spacing-lg);
   display: flex;
